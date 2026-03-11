@@ -465,7 +465,10 @@ class Research_Teams {
 				}
 
 				$site_base_url = get_site_url();
-				$permalink     = str_replace( $site_base_url, $site_base_url . '/' . $team_slug, $permalink );
+				if ( str_starts_with( $permalink, trailingslashit( $site_base_url ) . $team_slug . '/' ) ) {
+					return $permalink;
+				}
+				$permalink = str_replace( $site_base_url, $site_base_url . '/' . $team_slug, $permalink );
 			}
 		}
 

@@ -15,5 +15,6 @@
 	"dependencies": {
 		"@wordpress/dom-ready": "^4.21.0",
 		"@wordpress/hooks": "^4.21.0"
-	}
+	},
+	"license": "GPL-2.0-or-later"
 }
