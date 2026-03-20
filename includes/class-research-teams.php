@@ -376,16 +376,18 @@ class Research_Teams {
 					'index.php?research_team=$matches[1]&' . $query_string . '&version=$matches[6]';
 			}
 
+			// Additional custom rules (for quiz groups, dataset archives, etc.).
+			// Must come BEFORE the attachment rule so specific patterns (e.g. /cast, /play)
+			// are evaluated before the generic attachment catch-all.
+			foreach ( $settings['additional_rules'] ?? array() as $pattern => $query ) {
+				$new_rules[ $term_pattern . '/' . $pattern . '/?$' ] =
+					'index.php?research_team=$matches[1]&' . $query;
+			}
+
 			// Attachment rule if pattern is defined.
 			if ( in_array( 'attachment', $supports, true ) && ! empty( $settings['attachment_pattern'] ) ) {
 				$new_rules[ $term_pattern . '/' . $settings['attachment_pattern'] . '/?$' ] =
 					'index.php?attachment=$matches[2]';
-			}
-
-			// Additional custom rules (for quiz groups, dataset archives, etc.).
-			foreach ( $settings['additional_rules'] ?? array() as $pattern => $query ) {
-				$new_rules[ $term_pattern . '/' . $pattern . '/?$' ] =
-					'index.php?research_team=$matches[1]&' . $query;
 			}
 		}
 
