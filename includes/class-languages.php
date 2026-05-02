@@ -31,7 +31,7 @@ class Languages {
 	 */
 	public function __construct( $loader ) {
 		$loader->add_action( 'init', $this, 'register' );
-		$loader->add_filter( 'prc_api_endpoints', $this, 'register_endpoints' );
+		$loader->add_action( 'rest_api_init', $this, 'register_endpoints' );
 	}
 
 	/**
@@ -143,15 +143,16 @@ class Languages {
 	/**
 	 * Register the endpoints.
 	 *
-	 * @hook prc_api_endpoints
-	 * @param mixed $endpoints The endpoints.
-	 * @return mixed The endpoints.
+	 * @hook rest_api_init
 	 */
-	public function register_endpoints( $endpoints ) {
-		array_push(
-			$endpoints,
+	/**
+	 * @hook rest_api_init
+	 */
+	public function register_endpoints() {
+		register_rest_route(
+			'prc-api/v3',
+			'utils/translate/(?P<post_id>\d+)',
 			array(
-				'route'               => 'utils/translate/(?P<post_id>\d+)',
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'restfully_get_post_for_translation' ),
 				'args'                => array(),
@@ -160,7 +161,6 @@ class Languages {
 				},
 			)
 		);
-		return $endpoints;
 	}
 
 	/**

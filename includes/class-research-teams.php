@@ -56,7 +56,7 @@ class Research_Teams {
 		$loader->add_filter( 'prc_schema_seo_canonical_url', $this, 'modify_canonical_url', 10, 2 );
 
 		// Register query var for research team validation.
-		$loader->add_filter( 'prc_platform_rewrite_query_vars', $this, 'register_query_var' );
+		$loader->add_filter( 'query_vars', $this, 'register_query_var' );
 
 		// Validate research team query var on request.
 		$loader->add_action( 'parse_request', $this, 'validate_research_team_query_var' );
@@ -129,7 +129,7 @@ class Research_Teams {
 	/**
 	 * Register the research_team query var.
 	 *
-	 * @hook prc_platform_rewrite_query_vars
+	 * @hook query_vars
 	 *
 	 * @param array $query_vars The query vars.
 	 * @return array The modified query vars.

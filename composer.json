@@ -1,0 +1,20 @@
+{
+	"name": "pewresearch/prc-taxonomies",
+	"description": "Platform-wide taxonomies (topic, research-teams, languages) for the PRC digital publishing platform.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=8.2",
+		"automattic/jetpack-autoloader": "^5.0",
+		"landrok/language-detector": "^1.3"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true,
+			"automattic/jetpack-autoloader": true
+		},
+		"platform": {
+			"php": "8.4.0"
+		}
+	}
+}

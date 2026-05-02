@@ -10,9 +10,10 @@
 		"lint:js": "wp-scripts lint-js"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.14.1"
+		"@wordpress/scripts": "^31.4.0"
 	},
 	"dependencies": {
+		"@wordpress/data": "^10.44.0",
 		"@wordpress/dom-ready": "^4.21.0",
 		"@wordpress/hooks": "^4.21.0"
 	},

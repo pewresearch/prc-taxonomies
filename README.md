@@ -61,6 +61,7 @@ WordPress's built-in category taxonomy, relabeled as "Topics" for editorial clar
 - Permalink base changed to `/topic/`
 - Labels changed from "Category" to "Topic" in the block editor
 - JavaScript filter modifies editor UI text
+- The Tags (`post_tag`) document settings panel is removed in the block editor (PRC does not use tags)
 
 ### Regions & Countries (`regions-countries`)
 
@@ -380,12 +381,12 @@ prc-taxonomies/
 ├── prc-taxonomies.php          # Main plugin file
 ├── package.json                # NPM configuration
 ├── src/
-│   └── index.js               # Topic Category editor JS
+│   └── index.js               # Topic i18n + post_tag panel removal
 ├── build/                      # Compiled assets
 └── includes/
     ├── class-bootstrap.php     # Plugin initialization
     ├── class-loader.php        # Hook loader utility
-    ├── class-taxonomies.php    # Shared taxonomy utilities
+    ├── class-taxonomy-utils.php # Post tag UI hide + activity trail
     ├── class-research-teams.php
     ├── class-formats.php
     ├── class-topic-category.php

@@ -82,6 +82,7 @@ class Bootstrap {
 		require_once plugin_dir_path( __DIR__ ) . '/includes/class-mode-of-analysis.php';
 		require_once plugin_dir_path( __DIR__ ) . '/includes/class-regions-countries.php';
 		require_once plugin_dir_path( __DIR__ ) . '/includes/class-research-teams.php';
+		require_once plugin_dir_path( __DIR__ ) . '/includes/class-taxonomy-utils.php';
 	}
 
 	/**
@@ -99,6 +100,7 @@ class Bootstrap {
 		new Mode_Of_Analysis( $this->get_loader() );
 		new Regions_Countries( $this->get_loader() );
 		new Research_Teams( $this->get_loader() );
+		new Taxonomy_Utils( $this->get_loader() );
 	}
 
 	/**
