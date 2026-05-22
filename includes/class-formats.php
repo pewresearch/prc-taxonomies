@@ -36,6 +36,7 @@ class Formats {
 		'decoded'        => 'decoded',
 		'dataset'        => 'dataset',
 		'newsletterglue' => 'newsletter',
+		'prc_newsletter' => 'newsletter',
 		'collections'    => 'collection',
 	);
 
@@ -117,6 +118,7 @@ class Formats {
 				'decoded',
 				'dataset',
 				'newsletterglue',
+				'prc_newsletter',
 				'collections',
 			)
 		);
