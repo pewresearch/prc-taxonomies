@@ -1,11 +1,11 @@
 
-> @prc/taxonomies@1.1.0 build
+> @prc/taxonomies@1.0.0 build
 > wp-scripts build
 
-asset [1m[32mindex.js[39m[22m 803 bytes [1m[32m[emitted][39m[22m [1m[32m[minimized][39m[22m (name: index)
-asset [1m[32mindex.asset.php[39m[22m 121 bytes [1m[32m[emitted][39m[22m (name: index)
-Entrypoint [1mindex[39m[22m 924 bytes = [1m[32mindex.js[39m[22m 803 bytes [1m[32mindex.asset.php[39m[22m 121 bytes
-orphan modules 126 bytes [1m[33m[orphan][39m[22m 3 modules
+asset index.js 803 bytes [emitted] [minimized] (name: index)
+asset index.asset.php 121 bytes [emitted] (name: index)
+Entrypoint index 924 bytes = index.js 803 bytes index.asset.php 121 bytes
+orphan modules 126 bytes [orphan] 3 modules
 runtime modules 663 bytes 3 modules
-[1m./src/index.js + 3 modules[39m[22m 1.04 KiB [1m[31m[not cacheable][39m[22m [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
-webpack 5.106.2 compiled [1m[32msuccessfully[39m[22m in 3999 ms
+./src/index.js + 3 modules 1.04 KiB [not cacheable] [built] [code generated]
+webpack 5.106.2 compiled successfully in 1549 ms
