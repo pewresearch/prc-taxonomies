@@ -59,6 +59,7 @@ WordPress's built-in category taxonomy, relabeled as "Topics" for editorial clar
 **Key features:**
 
 - Permalink base changed to `/topic/`
+- 301 redirect from legacy `/category/` URLs to `/topic/`
 - Labels changed from "Category" to "Topic" in the block editor
 - JavaScript filter modifies editor UI text
 - The Tags (`post_tag`) document settings panel is removed in the block editor (PRC does not use tags)
