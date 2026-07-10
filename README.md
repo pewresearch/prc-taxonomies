@@ -78,14 +78,9 @@ Geographic classification for internationally-focused content.
 
 ### Languages (`languages`)
 
-Tracks the language of content, with automatic detection capabilities.
+Tracks the language of content.
 
 **Registered for post types:** `post`, `fact-sheets`, `fact-sheet`, `stub`, `decoded`, `short-read`
-
-**Key features:**
-
-- Includes language detection via LanguageDetector library
-- Provides REST API endpoint for translation workflows
 
 ### Mode of Analysis (`mode-of-analysis`)
 
