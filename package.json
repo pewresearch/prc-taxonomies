@@ -1,6 +1,6 @@
 {
 	"name": "@prc/taxonomies",
-	"version": "1.0.1",
+	"version": "1.0.0",
 	"description": "Custom taxonomies for PRC Platform including Research Teams, Formats, Topics, Languages, and more.",
 	"scripts": {
 		"build": "wp-scripts build",
