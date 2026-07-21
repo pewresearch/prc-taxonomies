@@ -94,7 +94,6 @@ class Fund_Pools {
 				'quiz',
 				'decoded',
 				'dataset',
-				'newsletterglue',
 				'prc_newsletter',
 				'data-table',
 			)

@@ -50,7 +50,6 @@ class Research_Teams {
 		$loader->add_filter( 'post_link', $this, 'modify_post_permalinks', 10, 2 );
 		$loader->add_filter( 'post_type_link', $this, 'modify_post_permalinks', 10, 2 );
 		$loader->add_filter( 'rewrite_rules_array', $this, 'add_rewrite_rules', 10, 1 );
-		$loader->add_filter( 'facetwp_preload_url_vars', $this, 'rewrite_datasets_archives', 10, 1 );
 		$loader->add_filter( 'prc_schema_seo_primary_term_taxonomies', $this, 'opt_into_primary_term_support', 20, 1 );
 		// Ensure canonical URLs also get research-teams URL rewrites.
 		$loader->add_filter( 'prc_schema_seo_canonical_url', $this, 'modify_canonical_url', 10, 2 );
@@ -60,6 +59,8 @@ class Research_Teams {
 
 		// Validate research team query var on request.
 		$loader->add_action( 'parse_request', $this, 'validate_research_team_query_var' );
+		// Preselect research-teams EP facet on /{team}/datasets paths.
+		$loader->add_action( 'parse_request', $this, 'preload_research_team_facet_on_datasets', 20 );
 
 		// Cache invalidation when terms change.
 		$loader->add_action( 'created_' . self::$taxonomy, $this, 'flush_term_cache' );
@@ -395,26 +396,33 @@ class Research_Teams {
 	}
 
 	/**
-	 * Rewrites pewresearch.org/{research-team-name}/datasets to preload the selected facet
+	 * Preload ep_filter_research-teams on /{team}/datasets so EP Facets + UI see the selection.
 	 *
-	 * @hook facetwp_preload_url_vars
-	 * @param array $url_vars The URL variables.
-	 * @return array
+	 * Injects $_GET (EP Facets reads GET) and query_vars. Clearing the facet should
+	 * navigate to the unscoped /datasets archive (handled client-side).
+	 *
+	 * @hook parse_request
+	 *
+	 * @param \WP $wp WP request object.
 	 */
-	public function rewrite_datasets_archives( $url_vars ) {
-		$current_url = FWP()->helper->get_uri();
-		if ( strpos( $current_url, 'datasets' ) === false ) {
-			return $url_vars;
+	public function preload_research_team_facet_on_datasets( $wp ) {
+		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		if ( false === strpos( $request_uri, 'datasets' ) ) {
+			return;
+		}
+		if ( ! empty( $_GET['ep_filter_research-teams'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return;
 		}
 
+		$path        = (string) strtok( $request_uri, '?' );
 		$valid_slugs = $this->get_cached_term_slugs();
 		foreach ( $valid_slugs as $term_slug ) {
-			if ( strpos( $current_url, $term_slug . '/datasets' ) !== false && empty( $url_vars['research_teams'] ) ) {
-				$url_vars['research_teams'] = array( $term_slug );
+			if ( false !== strpos( $path, '/' . $term_slug . '/datasets' ) ) {
+				$_GET['ep_filter_research-teams'] = $term_slug; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$wp->query_vars['ep_filter_research-teams'] = $term_slug;
 				break;
 			}
 		}
-		return $url_vars;
 	}
 
 	/**

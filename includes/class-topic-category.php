@@ -38,7 +38,6 @@ class Topic_Category {
 		$loader->add_action( 'init', $this, 'enforce_category_permalink_structure' );
 		$loader->add_filter( 'register_taxonomy_args', $this, 'change_category_labels_to_topic', 10, 2 );
 		$loader->add_action( 'enqueue_block_editor_assets', $this, 'enqueue_category_name_change_script' );
-		$loader->add_action( 'template_redirect', $this, 'redirect_category_urls', 0 );
 	}
 
 	/**
@@ -48,30 +47,9 @@ class Topic_Category {
 	 * @return void
 	 */
 	public function enforce_category_permalink_structure() {
-		update_option( 'category_base', 'topic' );
-	}
-
-	/**
-	 * Redirect /category/ URLs to /topic/.
-	 *
-	 * @hook template_redirect
-	 * @return void
-	 */
-	public function redirect_category_urls() {
-		if ( is_admin() || wp_doing_ajax() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-			return;
+		if ( 'topic' !== get_option( 'category_base' ) ) {
+			update_option( 'category_base', 'topic' );
 		}
-
-		$request_uri = isset( $_SERVER['REQUEST_URI'] )
-			? wp_unslash( $_SERVER['REQUEST_URI'] ) // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			: '';
-
-		if ( false === strpos( $request_uri, '/category/' ) ) {
-			return;
-		}
-
-		wp_safe_redirect( str_replace( '/category/', '/topic/', $request_uri ), 301 );
-		exit;
 	}
 
 	/**
