@@ -398,7 +398,6 @@ prc-taxonomies/
 
 - **Required:** `prc-platform-core`
 - **Optional:** `prc-schema-seo` (for primary term support)
-- **Optional:** `facetwp` (for dataset archive rewrites)
 
 ---
 
