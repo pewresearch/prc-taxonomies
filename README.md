@@ -1,5 +1,7 @@
 # PRC Taxonomies
 
+> Canonical docs: [docs/plugins/prc-taxonomies/](../../docs/plugins/prc-taxonomies/)
+
 Custom taxonomies for the PRC Platform, providing the foundational content classification system for pewresearch.org. This plugin manages research team associations, content formats, geographic regions, languages, and topic categorization.
 
 ## Overview
@@ -87,6 +89,10 @@ Tracks the language of content.
 Classifies content by research methodology.
 
 **Registered for post types:** `post`, `interactives`, `interactive`, `feature`, `fact-sheet`, `stub`, `decoded`
+
+### Editor taxonomy panels
+
+The block editor's default taxonomy panels (Formats, Research Teams, Regions & Countries, Languages, Mode of Analysis, and Decoded Category) are gated behind the `prc_surfaces__taxonomy` capability. Users without it see none of those panels — only the relabeled Topics (`category`) panel remains. The capability is localized as `window.prcTaxonomiesSurfaces.canManageTaxonomyPanels`; eligible panel slugs are in `taxonomyPanelSlugs`. The Tags (`post_tag`) panel is always removed.
 
 ### Fund Pools (`_fund_pool`)
 

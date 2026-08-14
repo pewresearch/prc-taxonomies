@@ -118,6 +118,24 @@ class Topic_Category {
 		if ( is_admin() && ! is_wp_error( $registered ) ) {
 			wp_enqueue_script( self::$handle );
 			wp_enqueue_style( self::$handle );
+			wp_add_inline_script(
+				self::$handle,
+				'window.prcTaxonomiesSurfaces = ' . wp_json_encode(
+					array(
+						'canManageTaxonomyPanels' => current_user_can( 'prc_surfaces__taxonomy' ),
+						'taxonomyPanelSlugs'      => array_values(
+							get_taxonomies(
+								array(
+									'show_ui'      => true,
+									'show_in_rest' => true,
+								),
+								'names'
+							)
+						),
+					)
+				) . ';',
+				'before'
+			);
 		}
 	}
 }
