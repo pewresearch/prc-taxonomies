@@ -38,7 +38,7 @@ class Research_Teams {
 	 *
 	 * @var array
 	 */
-	const EXCLUDED_TERM_SLUGS = array( 'decoded', 'pew-research-center' );
+	const EXCLUDED_TERM_SLUGS = array( 'decoded', 'pew-research-center', 'short-reads' );
 
 	/**
 	 * Constructor.
@@ -258,6 +258,7 @@ class Research_Teams {
 				'dataset',
 				'stub',
 				'decoded',
+				'chart',
 			)
 		);
 
